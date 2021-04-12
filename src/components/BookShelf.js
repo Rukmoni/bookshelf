@@ -2,7 +2,7 @@ import React from 'react';
 import Book from './Book';
 import '../App.css';
 
-const BookShelf = ({ shelf, booksList }) => {
+const BookShelf = ({ shelf, booksList,onUpdate }) => {
 	return (
 		<div className="bookshelf">
 			<h2 className="bookshelf-title">{shelf.title}</h2>
@@ -12,7 +12,7 @@ const BookShelf = ({ shelf, booksList }) => {
 						booksList.map((book) => {
 							return (
 								<li>
-									<Book data={book}/>
+									<Book data={book} onUpdate={onUpdate}/>
 								</li>
 							);
 						})}
