@@ -5,11 +5,11 @@ import { getAll,update } from '../BooksAPI';
 import { SHELFS } from '../constants';
 import '../App.css';
 
-const BookShelfPage = () => {
+const BookShelfPage = ({booksData}) => {
 	const [shelfReading, setShelfReading] = useState([]);
 	const [shelfWantToRead, setShelfWantToRead] = useState([]);
     const [shelfRead, setShelfRead] = useState([]);
-    async function fetchBooks() {
+ /*    async function fetchBooks() {
         const response = await getAll();
         console.log('response', response);
         const shelf1 = response.filter((book) => book.shelf === SHELFS.CURRENTLY_READING_SHELF.key);
@@ -18,17 +18,23 @@ const BookShelfPage = () => {
         setShelfReading(shelf1);
         setShelfWantToRead(shelf2);
         setShelfRead(shelf3);
-    }
+    } */
     async function onUpdateBookShelf(shelf,book){
        
         const response=await update(book,shelf)
         console.log(response);
-        if(response) fetchBooks();
+       // if(response) fetchBooks();
     }
 	useEffect(() => {
+       
+        const shelf1 = booksData.filter((book) => book.shelf === SHELFS.CURRENTLY_READING_SHELF.key);
+        const shelf2 = booksData.filter((book) => book.shelf === SHELFS.WANT_TO_READ_SHELF.key);
+        const shelf3 = booksData.filter((book) => book.shelf === SHELFS.READ_SHELF.key);
+        setShelfReading(shelf1);
+        setShelfWantToRead(shelf2);
+        setShelfRead(shelf3);
 		
-		fetchBooks();
-	}, []);
+	}, [booksData]);
 
 	const history = useHistory();
 	return (

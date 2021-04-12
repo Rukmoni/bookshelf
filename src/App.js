@@ -2,8 +2,8 @@ import React from 'react'
 import { Route } from 'react-router-dom'
 import BookShelfPage from './pages/BookShelfPage';
 import SearchPage from './pages/SearchPage';
-import { getAll} from './BooksAPI';
-// import * as BooksAPI from './BooksAPI'
+//import { getAll} from './BooksAPI';
+ import * as BooksAPI from './BooksAPI'
 import './App.css'
 
 class BooksApp extends React.Component {
@@ -16,11 +16,13 @@ class BooksApp extends React.Component {
      */
    booksData:[]
   }
-  async componentDidMount(){
+   componentDidMount(){
    
-      const response = await getAll();
-      console.log('response', response);
-     
+     BooksAPI.getAll().then((booksData)=>{
+       this.setState(()=>({
+        booksData
+       }))
+     })
     
     //fetchBooks();
     
@@ -30,8 +32,15 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-       <Route exact path='/' component={BookShelfPage}/>
-       <Route exact path='/search' component={SearchPage}/>
+       <Route exact path='/' render={() => (
+          <BookShelfPage
+            booksData={this.state.booksData}
+           
+          />
+        )}/>
+       <Route exact path='/search' render={()=>(
+         <SearchPage booksData={this.state.booksData}/>
+       )}/>
       </div>
     )
   }

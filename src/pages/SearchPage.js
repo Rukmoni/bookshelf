@@ -1,10 +1,20 @@
-import React from 'react';
+import React,{useState} from 'react';
 import {useHistory } from 'react-router-dom'
+import Book from '../components/Book'
 import '../App.css';
 
 
-const SearchPage = ({navigation}) => {
-    const history = useHistory();
+const SearchPage = ({booksData}) => {
+	const [filteredBooks,setFilteredBooks]=useState([]);
+	const history = useHistory();
+	const updateSearchList=async(input)=>{
+		console.log("input",input.currentTarget.value)
+		let searchStr=input.currentTarget.value
+		const filteredList=booksData.filter(book=>{
+			return book.title.toLowerCase().includes(searchStr.toLowerCase())
+		})
+		setFilteredBooks(filteredList);
+	}
 	return (
 		<div className="search-books">
 			<div className="search-books-bar">
@@ -20,11 +30,20 @@ const SearchPage = ({navigation}) => {
               However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
               you don't find a specific author or title. Every search is limited by search terms.
             */}
-					<input type="text" placeholder="Search by title or author" />
+					<input type="text" placeholder="Search by title or author" onChange={(text)=>updateSearchList(text)}/>
 				</div>
 			</div>
 			<div className="search-books-results">
-				<ol className="books-grid" />
+				<ol className="books-grid" >
+				{filteredBooks &&
+					filteredBooks.map((book) => {
+							return (
+								<li>
+									<Book data={book} />
+								</li>
+							);
+						})}
+				</ol>
 			</div>
 		</div>
 	);
