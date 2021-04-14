@@ -1,15 +1,16 @@
 import React from 'react';
 import OptionMenu from './OptionMenu';
+import PropTypes from 'prop-types';
 import '../App.css'
 
-const Book=({data,onUpdate})=>{
- 
+const Book=({data,shelfChange})=>{
+
     return(
         <div className="book">
         <div className="book-top">
          {/*  <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: 'url("http://books.google.com/books/content?id=PGR2AwAAQBAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE73-GnPVEyb7MOCxDzOYF1PTQRuf6nCss9LMNOSWBpxBrz8Pm2_mFtWMMg_Y1dx92HT7cUoQBeSWjs3oEztBVhUeDFQX6-tWlWz1-feexS0mlJPjotcwFqAg6hBYDXuK_bkyHD-y&source=gbs_api")' }}></div> */}
-         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${data.imageLinks.thumbnail})` }}></div>
-        <OptionMenu onUpdate={onUpdate} book={data} currentShelf={data.shelf}/>
+         <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${data.imageLinks})` }}></div>
+        <OptionMenu shelfChange={shelfChange} book={data} currentShelf={data.shelf}/>
         </div>
         <div className="book-title">{data.title}</div>
         <div className="book-authors">{data.authors[0]}</div>
@@ -17,5 +18,8 @@ const Book=({data,onUpdate})=>{
 
     )
 }
-
+Book.protoTypes={
+  data:PropTypes.array,
+  shelfChange:PropTypes.func,
+}
 export default Book;

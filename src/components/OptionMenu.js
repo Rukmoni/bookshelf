@@ -1,13 +1,14 @@
 import React from 'react';
-import {SHELFS} from '../constants'
+import {SHELFS} from '../constants';
+import PropTypes from 'prop-types';
 import '../App.css'
 
-const OptionMenu=({onUpdate,book,currentShelf})=>{
+const OptionMenu=({shelfChange,book})=>{
  
   function changeShelf(evt)
   {
     console.log(book)
-    onUpdate(book,evt.target.value)
+    shelfChange(book,evt.target.value)
   }
     return(
         <div className="book-shelf-changer">
@@ -23,5 +24,8 @@ const OptionMenu=({onUpdate,book,currentShelf})=>{
 
     )
 }
-
+OptionMenu.protoTypes={
+  data:PropTypes.array,
+  shelfChange:PropTypes.func,
+}
 export default OptionMenu;

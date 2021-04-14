@@ -18,12 +18,14 @@ class BooksApp extends React.Component {
   }
    componentDidMount(){
     BooksAPI.getAll().then((books)=>{
+      console.log("books",books);
       let bookShelfs=books.map(book=>{
         let bookObj={}
         bookObj["title"]=book.title;
         bookObj["id"]=book.id;
         bookObj["authors"]=book.authors?book.authors:"Author Info missing";
         bookObj["imageLinks"]=book.imageLinks?book.imageLinks.thumbnail:"";
+        bookObj["shelf"]=book.shelf;
         return bookObj;
       })
       console.log("bookShelfs",bookShelfs);
