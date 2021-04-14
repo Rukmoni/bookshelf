@@ -17,14 +17,20 @@ class BooksApp extends React.Component {
    booksData:[]
   }
    componentDidMount(){
-   
-     BooksAPI.getAll().then((booksData)=>{
-       this.setState(()=>({
-        booksData
-       }))
-     })
+    BooksAPI.getAll().then((books)=>{
+      let bookShelfs=books.map(book=>{
+        let bookObj={}
+        bookObj["title"]=book.title;
+        bookObj["id"]=book.id;
+        bookObj["authors"]=book.authors?book.authors:"Author Info missing";
+        bookObj["imageLinks"]=book.imageLinks?book.imageLinks.thumbnail:"";
+        return bookObj;
+      })
+      console.log("bookShelfs",bookShelfs);
+      this.setState(() => ({booksData: bookShelfs}))
+    })
     
-    //fetchBooks();
+    
     
     
   }
@@ -32,8 +38,8 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-       <Route exact path='/' render={() => (
-          <BookShelfPage
+       <Route exact path='/' render={(props) => (
+          <BookShelfPage {...props}
             booksData={this.state.booksData}
            
           />
