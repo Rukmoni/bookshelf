@@ -3,17 +3,16 @@ import {SHELFS} from '../constants';
 import PropTypes from 'prop-types';
 import '../App.css'
 
-const OptionMenu=({shelfChange,book})=>{
- 
+const OptionMenu=({shelfChange,book,currentShelf})=>{
+ console.log("currentShelf",currentShelf)
   function changeShelf(evt)
   {
-    console.log(book)
-    shelfChange(book,evt.target.value)
+   evt.preventDefault();
+  shelfChange(book,evt.target.value)
   }
     return(
         <div className="book-shelf-changer">
-        <select onChange={changeShelf} >
-          <option value="move" disabled>Move to...</option>
+        <select onChange={(e)=>changeShelf(e)} value={currentShelf} >
           <option value={SHELFS.CURRENTLY_READING_SHELF.key}>Currently Reading</option>
           <option value={SHELFS.WANT_TO_READ_SHELF.key}>Want to Read</option>
           <option value={SHELFS.READ_SHELF.key}>Read</option>
@@ -27,5 +26,6 @@ const OptionMenu=({shelfChange,book})=>{
 OptionMenu.protoTypes={
   data:PropTypes.array,
   shelfChange:PropTypes.func,
+  currentShelf:PropTypes.string
 }
 export default OptionMenu;
