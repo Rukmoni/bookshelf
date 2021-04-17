@@ -1,7 +1,6 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useHistory } from 'react-router-dom';
 import BookShelf from '../components/BookShelf';
-
 import PropTypes from 'prop-types';
 import { SHELFS } from '../constants';
 import '../App.css';

@@ -17,32 +17,16 @@ class BooksApp extends React.Component {
    booksData:[]
   }
   
-   componentDidMount(){
-   
+   componentDidMount(){  
     this.fetch_All_Books();
-    
-    
-    
   }
+  
   fetch_All_Books=()=>{
     BooksAPI.getAll().then((books)=>{
       console.log("books",books);
       this.setState(() => ({booksData: books}))
 
     })
-     /*  let bookShelfs=books.map(book=>{
-        let bookObj={}
-        bookObj["title"]=book.title;
-        bookObj["id"]=book.id;
-        bookObj["authors"]=book.authors?book.authors:"Author Info missing";
-        bookObj["imageLinks"]=book.imageLinks?book.imageLinks.thumbnail:"";
-        bookObj["shelf"]=book.shelf;
-        return bookObj;
-      })
-      console.log("bookShelfs",bookShelfs);
-      this.setState(() => ({booksData: bookShelfs}))
-    }) */
-
   }
 shelfChange=(book,shelf)=>{
   book.shelf=shelf;
