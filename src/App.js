@@ -27,7 +27,10 @@ class BooksApp extends React.Component {
   fetch_All_Books=()=>{
     BooksAPI.getAll().then((books)=>{
       console.log("books",books);
-      let bookShelfs=books.map(book=>{
+      this.setState(() => ({booksData: books}))
+
+    })
+     /*  let bookShelfs=books.map(book=>{
         let bookObj={}
         bookObj["title"]=book.title;
         bookObj["id"]=book.id;
@@ -38,7 +41,7 @@ class BooksApp extends React.Component {
       })
       console.log("bookShelfs",bookShelfs);
       this.setState(() => ({booksData: bookShelfs}))
-    })
+    }) */
 
   }
 shelfChange=(book,shelf)=>{
@@ -59,7 +62,7 @@ shelfChange=(book,shelf)=>{
           />
         )}/>
        <Route exact path='/search' render={()=>(
-         <SearchPage booksData={this.state.booksData}/>
+         <SearchPage booksData={this.state.booksData} shelfChange={this.shelfChange}/>
        )}/>
       </div>
     )
