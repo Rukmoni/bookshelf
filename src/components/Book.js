@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import '../App.css'
 
 const Book=({data,shelfChange})=>{
-console.log("data",data.authors);
     return(
         <div className="book">
         <div className="book-top">

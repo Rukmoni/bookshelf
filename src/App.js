@@ -23,7 +23,6 @@ class BooksApp extends React.Component {
   
   fetch_All_Books=()=>{
     BooksAPI.getAll().then((books)=>{
-      console.log("books",books);
       this.setState(() => ({booksData: books}))
 
     })
