@@ -19,7 +19,7 @@ The search page has a text input that may be used to find books. As the value of
  Nodejs, Reactjs, create-react-app, React Router, prop-types, Bootstrap, Udacity API,..
 
 # Installation Guide :
-Clone this git repo master* branch
-cd bookshelf
-npm install
-npm start
+### Clone this git repo master* branch
+### cd bookshelf
+### npm install
+### npm start
