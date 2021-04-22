@@ -7,19 +7,15 @@ const OptionMenu = ({ shelfChange, book, currentShelf }) => {
 	const [selectedShelf, setSelectedShelf] = useState(currentShelf);
 
 	useEffect(() => {
-    console.log("currentShelf",currentShelf);
-		if (typeof(currentShelf) != "undefined") {
-      
-      setSelectedShelf(currentShelf);
-    }else
-    {
-      console.log("Shelf");
-      setSelectedShelf(SHELFS.None);
-    }
+		if (typeof currentShelf != 'undefined') {
+			setSelectedShelf(currentShelf);
+		} else {
+			setSelectedShelf(SHELFS.None);
+		}
 	}, []);
 	function changeShelf(evt) {
-    evt.preventDefault();
-    setSelectedShelf(evt.target.value)
+		evt.preventDefault();
+		setSelectedShelf(evt.target.value);
 		shelfChange(book, evt.target.value);
 	}
 	return (
@@ -28,7 +24,7 @@ const OptionMenu = ({ shelfChange, book, currentShelf }) => {
 				<option value={SHELFS.CURRENTLY_READING_SHELF.key}>Currently Reading</option>
 				<option value={SHELFS.WANT_TO_READ_SHELF.key}>Want to Read</option>
 				<option value={SHELFS.READ_SHELF.key}>Read</option>
-				<option value={SHELFS.None}>None</option>
+				<option value={SHELFS.None.key}>None</option>
 			</select>
 		</div>
 	);
