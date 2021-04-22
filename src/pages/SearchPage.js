@@ -20,7 +20,7 @@ const SearchPage = ({ booksData, shelfChange }) => {
 	};
 	const validate_BookList = (books) => {
 		const updatedList = books.map((book) => {
-			let shelf_book = booksData.filter((this_book) => this_book.id === book.id);
+			let shelf_book = booksData.find((this_book) => this_book.id === book.id);
 			if (shelf_book && shelf_book.length > 0) {
 				book.shelf = shelf_book[0].shelf;
 			} else {
