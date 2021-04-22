@@ -9,7 +9,7 @@ const Book = ({ data, shelfChange }) => {
       data.authors&&data.authors.length>0?
 			<div className="book-authors">
       {data.authors.map((author)=>
-				<div>{author}</div>
+				<div key={author}>{author}</div>
       )}
 			</div>:<div></div>
 		);
