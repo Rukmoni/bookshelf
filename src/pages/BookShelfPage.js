@@ -1,13 +1,12 @@
 import React from 'react';
-import { useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import BookShelf from '../components/BookShelf';
 import PropTypes from 'prop-types';
 import { SHELFS } from '../constants';
 import '../App.css';
 
 const BookShelfPage = ({booksData,shelfChange}) => {
-	
-	const history = useHistory();
+
 	return (
 		<div className="list-books">
 			<div className="list-books-title">
@@ -19,7 +18,9 @@ const BookShelfPage = ({booksData,shelfChange}) => {
                 <BookShelf shelf={SHELFS.READ_SHELF} booksList={booksData} shelfChange={shelfChange}/>
 			</div>
 			<div className="open-search">
-				<button onClick={() => history.push('/search')}>Add a book</button>
+			<Link to="/search" >
+				<button>Add a book</button>
+				</Link>
 			</div>
 		</div>
 	);
