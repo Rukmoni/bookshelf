@@ -19,7 +19,7 @@ const Book = ({ data, shelfChange }) => {
 			<div className="book-top">
 				<div
 					className="book-cover"
-					style={{ width: 128, height: 193, backgroundImage: `url(${data.imageLinks.thumbnail})` }}
+					style={{ width: 128, height: 193, backgroundImage: data.imageLinks&&data.imageLinks.thumbnail?`url(${data.imageLinks.thumbnail})`:`` }}
 				></div>
 				<OptionMenu shelfChange={shelfChange} book={data} currentShelf={data.shelf} />
 			</div>
