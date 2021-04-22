@@ -15,11 +15,11 @@ The main page also has a link to /search, a search page that allows you to find 
 The search page has a text input that may be used to find books. As the value of the text input changes, the books that match that query are displayed on the page, along with a control that lets you add the book to your library. To keep the interface consistent, you may consider re-using some of the code you used to display the books on the main page.
 
 
-#Technology Used :
+# Technology Used :
  Nodejs, Reactjs, create-react-app, React Router, prop-types, Bootstrap, Udacity API,..
 
-#Installation Guide :
-###Clone this git repo master* branch
+# Installation Guide :
+Clone this git repo master* branch
 cd bookshelf
 npm install
 npm start
