@@ -13,7 +13,9 @@ const SearchPage = ({ booksData, shelfChange }) => {
 	const history = useHistory();
 
 	const handleChange = (evt) => {
+		
 		setQuery(evt.target.value);
+		
 		search_books();
 	};
 	const validate_BookList = (books) => {
@@ -26,7 +28,7 @@ const SearchPage = ({ booksData, shelfChange }) => {
 			}
 			return book;
 		});
-		
+
 		setSearchedBooks(updatedList);
 	};
 
@@ -35,13 +37,13 @@ const SearchPage = ({ booksData, shelfChange }) => {
 			BooksAPI.search(query, 15).then((books) => {
 				if (books.length > 0) {
 					validate_BookList(books);
-					
 				} else {
 					setSearchedBooks([]);
 					setShowSearchErr(true);
 				}
 			});
 		}
+	
 	};
 
 	return (
@@ -55,7 +57,7 @@ const SearchPage = ({ booksData, shelfChange }) => {
 				</div>
 			</div>
 			<div className="search-books-results">
-				{SerachedBooks && (
+				{query.length>0&&SerachedBooks && (
 					<div>
 						<ol className="books-grid">
 							{SerachedBooks.map((book) => {
