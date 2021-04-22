@@ -21,8 +21,9 @@ const SearchPage = ({ booksData, shelfChange }) => {
 	const validate_BookList = (books) => {
 		const updatedList = books.map((book) => {
 			let shelf_book = booksData.find((this_book) => this_book.id === book.id);
-			if (shelf_book && shelf_book.length > 0) {
-				book.shelf = shelf_book[0].shelf;
+			console.log(shelf_book);
+			if (shelf_book) {
+				book.shelf = shelf_book.shelf;
 			} else {
 				book.shelf = SHELFS.None.key;
 			}
